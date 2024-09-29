@@ -1,38 +1,92 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  display: flex;
   min-height: 100vh;
+  align-items: center;
+}
+
+#tasks-list {
+  background-color: rgba(232, 232, 232, 0.211);
+  width: 80%;
+  margin: auto;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 50px;
+  padding: 25px;
+}
+
+#tasks-list h1 {
+  margin: 0;
+}
+input {
+  all: unset;
+  border: 1px gray solid;
+  padding: 12px 0;
+  padding-left: 25px;
+  border-radius: 20px;
+  width: 30%;
+}
+
+button {
+  all: unset;
+  padding: 8px 18px;
+  background-color: blueviolet;
   color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+form {
+  display: flex;
+  gap: 10px;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+#tasks {
+  min-height: 20vh;
+  min-width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+#task-item {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  min-width: 80%;
 }
 
-.App-link {
-  color: #61dafb;
+#icons-bloc {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#icons-bloc * {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input::placeholder {
+  font-style: italic;
+}
+
+#tasks h2 {
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+input[name="edit-task"] {
+  all: unset;
+  border: 1px grey solid;
+  padding: 12px 0;
+  padding-left: 22px;
+  border-radius: 20px;
+  width: 70%;
 }
