@@ -1,44 +1,69 @@
 import React, { useState, useRef } from "react";
 import { FaCheck, FaPen, FaTrash } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
+import { useDispatch } from "react-redux";
 
 function TaskItem({ title, isDone, setTasks, id, tasks }) {
   const editRef = useRef();
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   function handleEditTask() {
     if (!editRef.current.value) {
       return alert("empty fields are not allowed");
     }
-    setTasks(
-      tasks.map((task) => {
-        return task.id === id
-          ? { ...task, title: editRef.current.value }
-          : task;
-      })
-    );
+    // setTasks(
+    //   tasks.map((task) => {
+    //     return task.id === id
+    //       ? { ...task, title: editRef.current.value }
+    //       : task;
+    //   })
+    // );
+    dispatch({
+      type: "UPDATE_TASK",
+      payload: {
+        id,
+        task: editRef.current.value,
+      },
+    });
     setShow(false);
   }
 
   function handleDone() {
-    setTasks(
-      tasks.map((task) => {
-        return task.id === id ? { ...task, isDone: true } : task;
-      })
-    );
+    // setTasks(
+    //   tasks.map((task) => {
+    //     return task.id === id ? { ...task, isDone: true } : task;
+    //   })
+    // );
+    dispatch({
+      type: "TASK_DONE",
+      payload: {
+        id,
+      },
+    });
   }
   function handleNotDone() {
-    setTasks(
-      tasks.map((task) => {
-        return task.id === id ? { ...task, isDone: false } : task;
-      })
-    );
+    // setTasks(
+    //   tasks.map((task) => {
+    //     return task.id === id ? { ...task, isDone: false } : task;
+    //   })
+    // );
+    dispatch({
+      type: "TASK_NOT_DONE",
+      payload: {
+        id,
+      },
+    });
   }
   function handleDeleteTask() {
-    setTasks(
-      tasks.filter((task) => {
-        return tasks.id !== id;
-      })
-    );
+    // setTasks(
+    //   tasks.filter((task) => {
+    //     return task.id !== id;
+    //   })
+    // );
+    dispatch({
+      type: "DELETE_TASK",
+      payload: { id },
+    });
   }
   return (
     <div

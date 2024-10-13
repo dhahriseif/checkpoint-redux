@@ -7,8 +7,11 @@ import {
   MdOutlinePlaylistAddCheck,
   MdOutlinePlaylistRemove,
 } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 
 function TasksList() {
+  const dispatch = useDispatch();
+  const {mainTasks} = useSelector((store) => store);
   const [tasks, setTasks] = useState([]);
   const [status, setStatus] = useState("");
   const taskRef = useRef();
@@ -26,7 +29,11 @@ function TasksList() {
       title: taskRef.current.value,
       isDone: false,
     };
-    setTasks([...tasks, newTask]);
+    //setTasks([...tasks, newTask]);
+    dispatch({
+      type: "ADD_TASK",
+      payload: newTask,
+    });
     taskRef.current.value = "";
   }
   return (
@@ -63,8 +70,8 @@ function TasksList() {
         />
       </div>
       <div id="tasks">
-        {tasks.length > 0 ? (
-          tasks
+        {mainTasks.length > 0 ? (
+          mainTasks
             .filter((elt) =>
               status === "done"
                 ? elt.isDone
